@@ -49,10 +49,3 @@ Properties:
     Default: ''
     Type:
       - String
-  targetDir:
-    Description: 配置和代码文件存放目录
-    Required: false
-    Example: ''
-    Default: ''
-    Type:
-      - String

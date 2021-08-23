@@ -26,7 +26,7 @@
     "start": "npm run watch",
     "watch": "npm run doc && tsc -w",
     "build": "rm -rf node_modules && rm -rf package-lock.json && npm i && ncc build src/index.ts -m -e @serverless-devs/core -o lib",
-    "test": "jest",
+    "test": "jest --testNamePattern '^(?!Integration::)",
     "test:cov": "jest --coverage",
     "doc": "npx typedoc src/index.ts --json doc/doc.json --out doc"
   },
