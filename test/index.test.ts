@@ -51,6 +51,13 @@ describe('test/index.test.ts', () => {
     sandbox.stub(FC.prototype, 'listTriggers').resolves({
       data: { triggers: [{ name }] },
     });
+    sandbox.stub(FC.prototype, 'getTrigger').resolves({
+      data: {
+        triggerName: 'http',
+        triggerType: 'http',
+        triggerConfig: {},
+      },
+    });
   });
 
   afterEach(async () => {
@@ -58,19 +65,17 @@ describe('test/index.test.ts', () => {
     await fse.remove(dir);
   });
 
-  it('info help', async () => {
+  it('info info', async () => {
     const inp = _.cloneDeep(inputs);
-    inp.args = '--help';
+    inp.args = 'info';
     const result = await componentStarter.info(inp);
-    console.log('sync help result: ', result);
-    expect(result).toBeUndefined();
+    expect(Object.keys(result)).toEqual(['service', 'function', 'triggers']);
   });
 
-  it('info yaml', async () => {
+  it('info help', async () => {
     const inp = _.cloneDeep(inputs);
-    inp.args = `--target-dir ${dir}`;
+    inp.args = `--help`;
     const result = await componentStarter.info(inp);
-    console.log('sync yaml result: ', result);
-    expect(JSON.stringify(result)).toMatch(/\/test\/testSync\/AccountID_cn-shenzhen_xxxxx_xxxxx/);
+    expect(result).toBeUndefined();
   });
 });
