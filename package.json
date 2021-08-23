@@ -26,6 +26,8 @@
     "start": "npm run watch",
     "watch": "npm run doc && tsc -w",
     "build": "rm -rf node_modules && rm -rf package-lock.json && npm i && ncc build src/index.ts -m -e @serverless-devs/core -o lib",
+    "test": "jest",
+    "test:cov": "jest --coverage",
     "doc": "npx typedoc src/index.ts --json doc/doc.json --out doc"
   },
   "dependencies": {
@@ -41,7 +43,15 @@
     "@zeit/ncc": "^0.22.3",
     "eslint": "^7.7.0",
     "ts-node": "^8.10.2",
+    "jest": "^26.4.0",
+    "sinon": "^5.0.7",
+    "ts-jest": "^26.2.0",
+    "@types/jest": "^26.0.10",
     "typedoc": "^0.20.35",
     "typescript": "^3.9.7"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
   }
 }
